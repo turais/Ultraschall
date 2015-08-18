@@ -1,12 +1,16 @@
 /**
  * 
  * 
-  Ultraschall.h - This is an small Arduino Library - designed for simple
+  @file Ultraschall.h
+  @author Johannes Kuehnel
+  @date 08/13/2015
+  @version 0.1
+  @section DESCRIPTION
+  
+	This is an small Arduino Library - designed for simple
 	and easy use. It has an build-in temperature compensation and several
 	functions to read the distance to an object in millimeters, centimeters
-	and inches. 
-	
-  Created by Johannes Kuehnel, August 13, 2015.
+	and inches.  
   
   Copyright (c) 2015 Johannes Kuehnel
 
@@ -37,7 +41,7 @@
  * @brief Ultraschall Constructor 
  * @param triggerPin Arduino Pin Number - where Trigger Pin from the HCSR04 is connected
  * @param echoPin Arduino Pin Number - where Echo Pin from the HCSR04 is connected
- * @param maxDistanceCM - max distance you like to measure  
+ * @param maxDistanceCM - max distance you like to measure
  * */
 
 Ultraschall::Ultraschall(uint8_t triggerPin, uint8_t echoPin, unsigned long maxDistanceCM) {
