@@ -6,7 +6,7 @@ Eine HC-SR04 Beschreibung: [HC-SR04](https://www.turais.de/hcsr04-ultraschall-mo
 
 Use:
 
-```language-cpp
+```cpp
 #include "Ultraschall.h"
 
 Ultraschall ultra(7,8);
