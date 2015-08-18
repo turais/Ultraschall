@@ -1,0 +1,23 @@
+#######################################
+# Syntax Coloring Map For Ultraschall
+#######################################
+
+#######################################
+# Datatypes (KEYWORD1)
+#######################################
+
+Ultraschall	KEYWORD1
+
+#######################################
+# Methods and Functions (KEYWORD2)
+#######################################
+
+getDistanceInInch	KEYWORD2
+getDistanceInMils	KEYWORD2
+getDistanceTempCInMils	KEYWORD2
+getDistanceInCM	KEYWORD2
+
+#######################################
+# Constants (LITERAL1)
+#######################################
+
