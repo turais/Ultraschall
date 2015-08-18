@@ -44,16 +44,15 @@
 #define SPEED_OF_SOUND_FACTOR 0.6
 #define INIT_MAXDISTANCE_CM 500
 
-
 class Ultraschall {
 	
 	public:
-		Ultraschall(uint8_t triggerPin, uint8_t echoPin, 
+		Ultraschall(uint8_t triggerPin, uint8_t echoPin,
 			unsigned long maxDistanceCM = INIT_MAXDISTANCE_CM );
 		double getDistanceInInch();
 		double getDistanceInMils();
 		double getDistanceTempCInMils(double temp);
-		double getDistanceInCM();	
+		double getDistanceInCM();
 		
 	private:
 		uint8_t mTriggerPin;		

@@ -33,6 +33,13 @@
 
 #include "Ultraschall.h"
 
+/**
+ * @brief Ultraschall Constructor 
+ * @param triggerPin Arduino Pin Number - where Trigger Pin from the HCSR04 is connected
+ * @param echoPin Arduino Pin Number - where Echo Pin from the HCSR04 is connected
+ * @param maxDistanceCM - max distance you like to measure  
+ * */
+
 Ultraschall::Ultraschall(uint8_t triggerPin, uint8_t echoPin, unsigned long maxDistanceCM) {
 	this->mTriggerPin = triggerPin;
 	this->mEchoPin = echoPin;
@@ -41,17 +48,39 @@ Ultraschall::Ultraschall(uint8_t triggerPin, uint8_t echoPin, unsigned long maxD
     pinMode(mEchoPin, INPUT);
 }
 
+/**
+ * @brief Returns the measured distance in inches. 
+ * @return double - distance in inches 
+ * */
+
 double Ultraschall::getDistanceInInch() {
 	return Ultraschall::readDuration() / US_PER_INCH / 2;
 }
+
+/**
+ * @brief Returns the measured distance in millimeters. 
+ * @return double - distance in millimeters 
+ * */
 
 double Ultraschall::getDistanceInMils() {
 	return (Ultraschall::readDuration() / US_PER_MM / 2);
 }
 
+/**
+ * @brief Returns the measured distance in centimeters. 
+ * @return double - distance in centimeters 
+ * */
+
 double Ultraschall::getDistanceInCM() {
 	return Ultraschall::readDuration() / US_PER_CM / 2;
 }
+
+/**
+ * @brief Returns the measured distance in centimeters - temperature
+ * compensated.
+ * @param temp Temperature in degree celsius
+ * @return double - distance in millimeters 
+ * */
 
 double Ultraschall::getDistanceTempCInMils(double temp) {	
 	double speedofSound = Ultraschall::calculateSpeedOfSound(temp);
@@ -59,13 +88,31 @@ double Ultraschall::getDistanceTempCInMils(double temp) {
 	return Ultraschall::readDuration() / mps / 2;	
 }
 
+/**
+ * @brief Calculates the speed of sound - temperature compensated
+ * more: https://en.wikipedia.org/wiki/Speed_of_sound#Practical_formula_for_dry_air 
+ * @param Temperature in degree celsius
+ * @return double - speed of sound 
+ * */
+
 double Ultraschall::calculateSpeedOfSound(double temp) {
 	return (SPEED_OF_SOUND_BASE + SPEED_OF_SOUND_FACTOR*temp);	
 }
 
+/**
+ * @brief Calculates the speed of sound in microseconds per millimeter
+ * @param speed of sound 
+ * @return Speed of sound in microseconds per millimeter 
+ * */
+
 double Ultraschall::calculateMicroSecondsPerMM(double speedofSound) {
 	return 1000.0/speedofSound;
 }
+
+/**
+ * @brief Reads the duration in microseconds which the sound travels 
+ * @returns duration in microseconds 
+ * */
 
 double Ultraschall::readDuration() {	
 	
@@ -75,6 +122,5 @@ double Ultraschall::readDuration() {
 	delayMicroseconds(10);
 	digitalWrite(mTriggerPin, LOW);
 	float pulse = pulseIn(mEchoPin, HIGH, mTimeout);
-	return pulse;
-	
+	return pulse;	
 }
